@@ -1,0 +1,5 @@
+# Ignore embeddings directory or files
+embeddings/
+*.embedding
+__pycache__/
+utils/__pycache__
