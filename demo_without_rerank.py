@@ -4,8 +4,8 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 import json
 from sklearn.metrics.pairwise import cosine_similarity
-from gemini import rerank_with_gemini
-from openaimodel import rerank_with_openai
+from utils.gemini import rerank_with_gemini
+from utils.openaimodel import rerank_with_openai
 
 # Load data
 items = pd.read_csv("cleaned_items_with_metadata.csv")
@@ -37,16 +37,16 @@ for i, item_idxs in enumerate(top_k_indices):
         "top_k_results": matched_items
     })
     
-if st.button("🔍 Search and Rerank"):
+if st.button("🔍 Search"):
     matched_items = results[query_idx]["top_k_results"]
     print(f"Matched items: {matched_items}")
     # Gemini reranking
-    new_rank = rerank_with_openai(query, matched_items)
-    print("new rank: ", new_rank)  # returns something like "2, 1, 3, 5, 4"
-    reranked_items = [matched_items[int(i)-1] for i in new_rank.split(",")]
-    print(f"Reranked items: {reranked_items}")
+    # new_rank = rerank_with_openai(query, matched_items)
+    # print("new rank: ", new_rank)  # returns something like "2, 1, 3, 5, 4"
+    # reranked_items = [matched_items[int(i)-1] for i in new_rank.split(",")]
+    # print(f"Reranked items: {reranked_items}")
     # Display results with metadata and images
-    st.subheader("🔝 Top Matches (Reranked)")
+    st.subheader("🔝 Top Matches (without rerank)")
 
     for text in matched_items[:3]:
         # Find the item in original DB by full_text match

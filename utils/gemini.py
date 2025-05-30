@@ -2,7 +2,7 @@ from openai import OpenAI
 
 # Configure the Gemini client (OpenAI-compatible)
 client = OpenAI(
-    api_key="XXXXXXX",  # Replace with your actual Gemini API key
+    api_key="AIzaSyCoDA-zItxAAzQmAN_-kdKCEKc2lNDoTb8",  # Replace with your actual Gemini API key
     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 )
 
@@ -20,17 +20,19 @@ Query: "{query}"
 Candidate food items:
 {candidate_text}
 
-Output ONLY the numbers in a comma-separated format, no additional text.
+Output ONLY the numbers in a comma-separated format, NO additional text.
 Example: 2, 1, 3
+
+NO additional text, just the numbers.
 """
 
     response = client.chat.completions.create(
-        model="gemini-2.5-pro-preview-05-06",
+        model="gemini-2.0-flash",
         messages=[
 
             {"role": "user", "content": prompt}
         ],
-        temperature=0.2
+        temperature=0.0
     )
 
     return response.choices[0].message.content.strip()

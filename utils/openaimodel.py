@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-client = OpenAI(api_key="XXXXXXXX",  # Replace with your actual OpenAI API key)
+client = OpenAI(api_key="XXXXXXX")
 
 def rerank_with_openai(query, candidates):
     candidate_text = "\n".join([f"{i+1}. {c}" for i, c in enumerate(candidates)])

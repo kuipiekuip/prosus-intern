@@ -4,8 +4,8 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 import json
 from sklearn.metrics.pairwise import cosine_similarity
-from gemini import rerank_with_gemini
-from openaimodel import rerank_with_openai
+from utils.gemini import rerank_with_gemini
+from utils.openaimodel import rerank_with_openai
 
 # Load data
 items = pd.read_csv("cleaned_items_with_metadata.csv")
